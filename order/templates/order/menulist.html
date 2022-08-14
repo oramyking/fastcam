@@ -1,0 +1,16 @@
+
+<form action="{% url 'order:order' %} "   method='post'> 
+    {% csrf_token %} 
+    <h4> 주문하실 음식? </h4>
+    {% for menu in menu_list %}
+        <input type='checkbox' name='menu' id="menu{{ forloop.counter }}" value="{{ menu.food_name }}" >
+        <label for ="menu{{ forloop.counter }}">{{ menu.food_name }}</label><br>
+    {% endfor %}
+    
+        <input type='hidden' name='shop_id' value="{{ shop_id }}" >
+
+        <h4> 배송 받을 주소? </h4> 
+        address : <input type='text' name='address' required> <br>
+        <input type='submit'  value='gogo'>
+
+</form>
