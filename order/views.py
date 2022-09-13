@@ -3,6 +3,7 @@ from contextlib import redirect_stderr
 from django.utils import timezone
 from django.shortcuts import render, redirect
 from order.models import Shop, Menu, Order, Orderfood
+from user.models import User
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -16,9 +17,12 @@ def shop(request):
         # shop=Shop.objects.all()
         # serializer=ShopSerializer(shop, many=True)
         # return JsonResponse(serializer.data, safe=False)
-        
-        shop=Shop.objects.all()
-        return render(request, 'order/shoplist.html', {'shop_list':shop})
+       
+        if User.objects.get(id=request.session['user_id']).user_type== '0':
+            shop=Shop.objects.all()
+            return render(request, 'order/shoplist.html', {'shop_list':shop})
+        else:
+            return render(request, 'order/fail.html')
         
         
     elif  request.method=='POST':

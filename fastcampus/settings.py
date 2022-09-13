@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'order.apps.OrderConfig',
     'boss.apps.BossConfig',
     'delivery.apps.DeliveryConfig',
+    'user.apps.UserConfig',
     'rest_framework'
 ]
 

@@ -1,0 +1,8 @@
+
+<form action="{% url 'user:login' %} "   method='post'> 
+    {% csrf_token %} 
+    <h4> 가입하신 이름을 입력 하세요</h4>
+          name : <input type='text' name='name' required> <br>
+        <input type='submit'  value='gogo'>
+
+</form>
